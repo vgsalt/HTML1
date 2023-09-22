@@ -1,0 +1,122 @@
+/* Sett opp en font for nettsiden. Dette laster inn en font som følger med nettsiden, og lar meg bruke fonten hvor som helst fra CSS. */
+@font-face {
+    font-family: 'Nunito Sans';
+    src: url('../fonts/Nunito-VariableFont_wght.ttf');
+    /* Lurt å bruke, i mens fonten blir lastet ned av brukeren så kommer den til å vise en annen font i mens, dette lar nettsiden laste inn raskere. */
+    font-display: swap;
+}
+
+body {
+    /* Sett Nunito som font på body. */
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 16px;
+    margin: 0;
+    /* Bruk som vanlig bakgrunnsfarge. */
+    background-color: #252525;
+    color: white;
+}
+
+nav {
+    background-color: #000000;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all .25s;
+}
+
+/* For alt inne i nav, legg på 50 piksler av margin på venstre-siden og høyresiden. */
+nav > * {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+
+.brand {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    vertical-align: middle;
+}
+
+#logo-text {
+    font-family: 'Cascadia Code', monospace;
+}
+
+.links {
+    display: flex;
+    flex-direction: row;
+    /* sett opp litt mellomrom mellom lenkene ellers ser det så forferdelig ut!!! */
+    gap: 8px;
+    justify-content: space-between;
+}
+
+/* for hver lenke inne i links-klassen, bruk disse verdiene */
+.links > a {
+    color: #15e8e8;
+    text-underline-offset: 5px;
+}
+
+
+/* Gjem hamburger-knappen */
+#hamburger {
+    display: none;
+}
+
+main {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+/* Sett opp bakgrunn for index-siden (body i index har "backgrounded" class) */
+.backgrounded {
+    background-color: #353535;
+    background-image: url("../filer/hus_og_bro.png");
+    background-repeat: no-repeat;
+    /* overlay synes best på nettsiden syns jeg. åja, du trenger bakgrunnsfarge allerede for å bruke blend mode */
+    background-blend-mode: overlay;
+    /* strekk ut til hele nettsiden. viktig, fordi det er no-repeat */
+    background-size: cover;
+    /* fill opp hele skjermen */
+    height: 100vh;
+}
+
+/* Når skjermen er mobil */
+@media screen and (max-width: 760px) {
+    #hamburger {
+        display: initial;
+        background: none;
+        border: none;
+    }
+
+    #hamburger:hover {
+        cursor: pointer;
+    }
+
+    #hamburger-icon {
+        color: #fff;
+        fill: #fff;
+        stroke: #fff;
+    }
+
+    .links > *:not(#hamburger) {
+        display: none;
+    }
+
+    .links {
+        flex-direction: column;
+        align-items: initial;
+        justify-content: initial;
+        transition: all .25s;
+    }
+
+    .responsive > *:not(#hamburger) {
+        display: initial;
+    }
+
+    nav {
+        flex-direction: column;
+        padding-bottom: 10px;
+    }
+}
